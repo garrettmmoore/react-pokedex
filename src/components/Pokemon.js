@@ -1,28 +1,23 @@
-import { useQuery } from 'react-query';
-import axios from 'axios';
+import { useQuery, useQueryClient } from 'react-query';
 import React from 'react';
+import { getPokemonByName } from '../fetch';
 
 export default function Pokemon(props) {
-  const { isLoading, isError, data, error } = useQuery('pokemon', () =>
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${props.name}`)
-  );
+  // Access the client
+  const queryClient = useQueryClient();
 
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
+  // Queries
+  const { data, status } = useQuery('pokemon', () => getPokemonByName(props));
 
-  if (isError) {
-    return <span>Error: {error.message}</span>;
-  }
+  if (status === 'loading') return <p>Loading...</p>;
+  if (status === 'error') return <p>Error :(</p>;
 
   const { name, moves } = data.data;
-
   // We can assume by this point that `isSuccess === true`
   return (
     <div>
       <h1>{name ? name : 'No name'}</h1>
       <ul>
-        {console.log(data)}
         {moves.map((move, i) => (
           <li key={`move-${i}`}>
             <a href={move.move.url}>{move.move.name}</a>
