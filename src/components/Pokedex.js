@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import React from 'react';
+import { getPokemon } from '../fetch';
 
-export default function Pokemon(props) {
+export default function Pokedex(props) {
   const { isLoading, isError, data, error } = useQuery('pokemon', () =>
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${props.name}`)
+    getPokemon(props)
   );
 
   if (isLoading) {
@@ -16,6 +16,10 @@ export default function Pokemon(props) {
   }
 
   const { name, moves } = data.data;
+
+  if (!data.data) {
+    return <p>Search a valid pokemon name.</p>;
+  }
 
   // We can assume by this point that `isSuccess === true`
   return (
