@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
 import { ChakraProvider, Box, VStack, Grid, theme } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import Pokedex from './components/Pokedex';

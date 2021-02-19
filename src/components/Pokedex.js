@@ -7,13 +7,11 @@ export default function Pokedex(props) {
     getPokemon(props)
   );
 
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
+  // Queries
+  const { data, status } = useQuery('pokemon', () => getPokemonByName(props));
 
-  if (isError) {
-    return <span>Error: {error.message}</span>;
-  }
+  if (status === 'loading') return <p>Loading...</p>;
+  if (status === 'error') return <p>Error :(</p>;
 
   const { name, moves } = data.data;
 
@@ -26,7 +24,6 @@ export default function Pokedex(props) {
     <div>
       <h1>{name ? name : 'No name'}</h1>
       <ul>
-        {console.log(data)}
         {moves.map((move, i) => (
           <li key={`move-${i}`}>
             <a href={move.move.url}>{move.move.name}</a>
