@@ -3,15 +3,13 @@ import React from 'react';
 import { getPokemon } from '../fetch';
 
 export default function Pokedex(props) {
-  const { isLoading, isError, data, error } = useQuery('pokemon', () =>
-    getPokemon(props)
+  const { isLoading, isError, data, error } = useQuery(
+    ['pokemon', props.name],
+    () => getPokemon(props)
   );
 
-  // Queries
-  const { data, status } = useQuery('pokemon', () => getPokemonByName(props));
-
-  if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'error') return <p>Error :(</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>{error.messag}</p>;
 
   const { name, moves } = data.data;
 
