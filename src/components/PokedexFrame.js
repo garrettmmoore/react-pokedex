@@ -1,5 +1,8 @@
 import React from 'react';
 
-const PokedexFrame = ({ children }) => {
-  return <div class="">{children}</div>;
+const PokedexFrame = props => {
+  const { children } = props;
+  return <div className="pokedex-frame">{children}</div>;
 };
+
+export default PokedexFrame;

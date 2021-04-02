@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider, QueryCache } from 'react-query';
-import { ChakraProvider, Box, VStack, Grid, theme } from '@chakra-ui/react';
+import { ChakraProvider, Box, Grid, GridItem, theme } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import Pokedex from './components/Pokedex';
 import PokemonForm from './components/PokemonForm';
@@ -23,12 +23,17 @@ function App() {
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <Box textAlign="center" fontSize="xl">
-          <Grid minH="100vh" p={3}>
-            <ColorModeSwitcher justifySelf="flex-end" />
-            <VStack spacing={8}>
+          <Grid
+            h="100vh"
+            templateRows="repeat(10, 1fr)"
+            templateColumns="repeat(10, 1fr)"
+          >
+            <GridItem colStart={2} colEnd={10} rowStart={2} rowEnd={2}>
               <PokemonForm handleSubmit={handleSubmit} />
+            </GridItem>
+            <GridItem colStart={2} colEnd={10} rowStart={3} rowEnd={10}>
               {finalString !== '' && <Pokedex name={finalString} />}
-            </VStack>
+            </GridItem>
           </Grid>
         </Box>
         <ReactQueryDevtools initialIsOpen={false} />
