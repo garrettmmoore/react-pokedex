@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.pokedex-frame {
+  @apply bg-red-500 p-10 rounded-lg h-full w-full overflow-y-scroll border-2 border-black flex;
+}
+
+.pokedex-screen {
+  @apply bg-white rounded-lg flex justify-center items-center;
+}
