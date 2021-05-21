@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input } from '@chakra-ui/react';
+import { Button, TextField } from 'tackle-react';
 
 const PokemonForm = ({ handleSubmit }) => {
   const [searchString, setSearchString] = useState('');
@@ -8,9 +8,16 @@ const PokemonForm = ({ handleSubmit }) => {
     setSearchString(value);
   };
   return (
-    <form onSubmit={event => handleSubmit(event, searchString)}>
-      <Input value={searchString} onChange={handleOnChange} />
-      <input type="submit" />
+    <form
+      onSubmit={event => handleSubmit(event, searchString)}
+      className="flex"
+    >
+      <TextField
+        value={searchString}
+        onChange={handleOnChange}
+        className="mr-2"
+      />
+      <Button color="blue" type="submit" label="Submit" />
     </form>
   );
 };

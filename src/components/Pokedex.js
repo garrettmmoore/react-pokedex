@@ -3,7 +3,7 @@ import React from 'react';
 import { Divider } from '@chakra-ui/react';
 import { getPokemon } from '../fetch';
 import PokedexFrame from './PokedexFrame';
-import PokedexScreen from './PokedexScreen';
+import PokedexScreenLeft from './PokedexScreenLeft';
 import PokedexFrameLeft from './PokedexFrameLeft';
 import PokedexFrameRight from './PokedexFrameRight';
 
@@ -26,7 +26,9 @@ export default function Pokedex(props) {
   return (
     <PokedexFrame toolbox={'hammer'}>
       <PokedexFrameLeft>
-        <PokedexScreen src={sprites.other['official-artwork'].front_default} />
+        <PokedexScreenLeft
+          src={sprites.other['official-artwork'].front_default}
+        />
       </PokedexFrameLeft>
       <Divider orientation="vertical" />
       <PokedexFrameRight>
