@@ -7,5 +7,5 @@
 }
 
 .pokedex-screen {
-  @apply bg-white rounded-lg flex justify-center items-center;
+  @apply bg-white rounded-lg;
 }
