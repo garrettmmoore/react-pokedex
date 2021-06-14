@@ -4,6 +4,7 @@ import { Divider } from '@chakra-ui/react';
 import { getPokemon } from '../fetch';
 import PokedexFrame from './PokedexFrame';
 import PokedexScreenLeft from './PokedexScreenLeft';
+import PokedexScreenRight from './PokedexScreenRight';
 import PokedexFrameLeft from './PokedexFrameLeft';
 import PokedexFrameRight from './PokedexFrameRight';
 
@@ -32,14 +33,16 @@ export default function Pokedex(props) {
       </PokedexFrameLeft>
       <Divider orientation="vertical" />
       <PokedexFrameRight>
-        <h1>{name ? name : 'No name'}</h1>
-        <ul>
-          {moves.map((move, i) => (
-            <li key={`move-${i}`}>
-              <a href={move.move.url}>{move.move.name}</a>
-            </li>
-          ))}
-        </ul>
+        <PokedexScreenRight>
+          <h1>{name ? name : 'No name'}</h1>
+          <ul>
+            {moves.map((move, i) => (
+              <li key={`move-${i}`}>
+                <a href={move.move.url}>{move.move.name}</a>
+              </li>
+            ))}
+          </ul>
+        </PokedexScreenRight>
       </PokedexFrameRight>
     </PokedexFrame>
   );
